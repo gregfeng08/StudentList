@@ -1,10 +1,14 @@
 #include <iostream>
-
+/*Written by Gregory Feng
+Last edited 10/7/19
+TicTacToe program created to play a tictactoe game.
+In a 3 by 3 board 2 players alternate turns to see who can get 3 in a row first.
+ */
 using namespace std;
 
 int main() {
   
-  char board[4][4]={{' ','a','b','c'},{'1',' ',' ',' '},{'2',' ',' ',' '},{'3',' ',' ',' '}};
+  char board[4][4]={{' ','a','b','c'},{'1',' ',' ',' '},{'2',' ',' ',' '},{'3',' ',' ',' '}}; //Board initializations
   char numerical;
   int numerical1;
   char alphabetical;
@@ -18,10 +22,10 @@ int main() {
 
   cout << "Welcome to 2 player Tic Tac Toe!" << endl;
   cout << "Player 1 will have the designated marker X, and player 2 will have O!" << endl;
-  whoseturn = 'X';
-  while(endgame == false) {
+  whoseturn = 'X'; //Start as X
+  while(endgame == false) { //Keep the game going until someone wins
     
-    if (((board[1][1] == 'X') && (board[1][2] == 'X') && (board[1][3] == 'X')) ||
+    if (((board[1][1] == 'X') && (board[1][2] == 'X') && (board[1][3] == 'X')) || //X's wins conditions
         ((board[2][1] == 'X') && (board[2][2] == 'X') && (board[2][3] == 'X')) ||
 	((board[3][1] == 'X') && (board[3][2] == 'X') && (board[3][3] == 'X')) ||
 	((board[1][1] == 'X') && (board[2][1] == 'X') && (board[3][1] == 'X')) ||
@@ -32,9 +36,9 @@ int main() {
     {
 	endgame = true;
 	cout << "X wins!" << endl;
-	xwins++;
+	xwins++; //Wincount
 	cout << "X has " << xwins << " wins and O has " << owins << " wins and there have been " << tiecount << " ties." << endl;
-	board[1][1] = ' ';
+	board[1][1] = ' '; //Board reset
 	board[1][2] = ' ';
 	board[1][3] = ' ';
 	board[2][1] = ' ';
@@ -44,10 +48,10 @@ int main() {
 	board[3][2] = ' ';
 	board[3][3] = ' ';
 	
-	break;
+	break; //Exit the loop if someone wins
     }
     
-    else if (((board[1][1] == 'O') && (board[1][2] == 'O') && (board[1][3] == 'O')) ||
+    else if (((board[1][1] == 'O') && (board[1][2] == 'O') && (board[1][3] == 'O')) || //O win condition
         ((board[2][1] == 'O') && (board[2][2] == 'O') && (board[2][3] == 'O')) ||
 	((board[3][1] == 'O') && (board[3][2] == 'O') && (board[3][3] == 'O')) ||
 	((board[1][1] == 'O') && (board[2][1] == 'O') && (board[3][1] == 'O')) ||
@@ -58,9 +62,9 @@ int main() {
     {
 	endgame = true;
 	cout << "O wins!" << endl;
-	owins++;
+	owins++; //Wincount
 	cout << "X has " << xwins << " wins and O has " << owins << " wins and there have been " << tiecount << " ties." << endl;
-	board[1][1] = ' ';
+	board[1][1] = ' '; //Board reset
 	board[1][2] = ' ';
 	board[1][3] = ' ';
 	board[2][1] = ' ';
@@ -71,17 +75,17 @@ int main() {
 	board[3][3] = ' ';
 	break;
     }
-    else if ((!(board[1][1] == ' ')) && (!(board[1][2] == ' ')) && (!(board[1][3] == ' ')) &&
+    else if ((!(board[1][1] == ' ')) && (!(board[1][2] == ' ')) && (!(board[1][3] == ' ')) && //Tie condition
 	     (!(board[2][2] == ' ')) && (!(board[2][1] == ' ')) && (!(board[2][3] == ' ')) &&
 	     (!(board[3][1] == ' ')) && (!(board[3][2] == ' ')) && (!(board[3][3] == ' '))) {
-	       tiecount++;
+      tiecount++; //Tie count
 	       cout << "It was a tie!" << endl;
 	       cout << "X has " << xwins << " and O has " << owins << " wins and there have been " << tiecount << " ties." << endl;
 	       break;
     }
     cout << whoseturn << "'s turn" << endl;
     cout << "Please input the alphabetical location of where you want to go!" << endl;
-    cin >> alphabetical;
+    cin >> alphabetical; //Takes in alphabetical input
     if (alphabetical == 'a') {
       a2n = 1;
     } else if (alphabetical == 'b') {
@@ -90,7 +94,7 @@ int main() {
       a2n = 3;
     }
     cout << "Please input the numerical location of where you want to go!" << endl;
-    cin >> numerical;
+    cin >> numerical; //Takes in numerical input
     if (numerical == '1') {
       numerical1 = 1;
     } else if (numerical == '2') {
@@ -99,12 +103,12 @@ int main() {
       numerical1 = 3;
     }
     
-    if (!(board[numerical1][a2n] == ' ')) {
+    if (!(board[numerical1][a2n] == ' ')) { //Checks if something is already there or if it is an existing move
       cout << "Invalid move!" << endl;
       turnredo = true;
     }
 
-    if (turnredo == false) {
+    if (turnredo == false) { //Marking
     if (alphabetical == 'a') {
        if (numerical == '1') {
 	 if ((board[1][1] == ' ')) {
@@ -151,20 +155,20 @@ int main() {
 	    board[3][3] = whoseturn;
 	    }
       } } }
-    cout << "-----------------------------------------------------------------------------" << endl;
+    cout << "-----------------------------------------------------------------------------" << endl; //Boardprinting
   cout << "TicTacToe Board:" << endl;
   cout << board[0][0] << " " << board[0][1] << " " << board[0][2] << " " << board[0][3] << endl;
   cout << board[1][0] << " " << board[1][1] << " " << board[1][2] << " " << board[1][3] << endl;
   cout << board[2][0] << " " << board[2][1] << " " << board[2][2] << " " << board[2][3] << endl;
   cout << board[3][0] << " " << board[3][1] << " " << board[3][2] << " " << board[3][3] << endl;
 cout << "-----------------------------------------------------------------------------" << endl;
- if (turnredo == false) {
+ if (turnredo == false) { //If no invalid move was detected, switch turns
    if (whoseturn == 'X') {
      whoseturn = 'O'; }
    else if (whoseturn == 'O') {
      whoseturn = 'X'; 
      }
- } else {
+ } else { //If an invalid move was detected, you don't switch turns and don't mark the invalid input.
    turnredo = false;
  }
    
